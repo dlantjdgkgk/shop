@@ -1,0 +1,49 @@
+$color: red;
+
+.wow-enter {
+    opacity: 0;
+}
+
+.wow-enter-active {
+    opacity: 1;
+    transition: all 500ms;
+}
+
+.red {
+    color: $color;
+    text-align: center;
+}
+
+.my-alert {
+    text-align: center;
+    background: #eeeeee;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
+}
+
+// .my-alert_2 {
+//     @extend .my-alert;
+// }
+
+.my-alert p {
+    margin-bottom: 0;
+}
+
+.shoes_info {
+    text-align: center;
+    button {
+        margin-right: 8px;
+    }
+}
+
+// div.container {
+//     h4 {
+//         color: blue;
+//     }
+//     p {
+//         color: green;
+//     }
+// }
