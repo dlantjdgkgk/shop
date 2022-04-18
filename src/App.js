@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Main from './Main';
+import React, { useState } from 'react';
+import Detail from './Detail';
+import Data from './data';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [shoes, setShoes] = useState(Data);
+    const [stock, setStock] = useState([10, 11, 12]);
+    return (
+        <Router>
+            <Routes>
+                <Route
+                    exact
+                    path='/'
+                    element={<Main shoes={shoes} setShoes={setShoes} />}
+                ></Route>
+                <Route
+                    path='/detail/:id'
+                    element={<Detail shoes={shoes} stock={stock} />}
+                ></Route>
+            </Routes>
+        </Router>
+    );
 }
-
 export default App;
