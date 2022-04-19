@@ -35,6 +35,8 @@ const Detail = ({ shoes, stock }) => {
 
     const { id } = useParams();
     const navigate = useNavigate();
+    console.log(id);
+    console.log(shoes);
 
     return (
         <>

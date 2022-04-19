@@ -3,6 +3,7 @@ import Main from './Main';
 import React, { useState } from 'react';
 import Detail from './Detail';
 import Data from './data';
+import Cart from './Cart';
 
 function App() {
     const [shoes, setShoes] = useState(Data);
@@ -19,6 +20,7 @@ function App() {
                     path='/detail/:id'
                     element={<Detail shoes={shoes} stock={stock} />}
                 ></Route>
+                <Route path='/cart' element={<Cart />}></Route>
             </Routes>
         </Router>
     );

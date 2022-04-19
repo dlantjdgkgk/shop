@@ -24,9 +24,9 @@ $color: red;
     margin: auto;
 }
 
-// .my-alert_2 {
-//     @extend .my-alert;
-// }
+.my-alert2 {
+    @extend .my-alert;
+}
 
 .my-alert p {
     margin-bottom: 0;

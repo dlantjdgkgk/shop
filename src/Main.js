@@ -4,6 +4,7 @@ import React from 'react';
 import Product from './product';
 import Header from './Header';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Main = ({ shoes, setShoes }) => {
     return (
@@ -24,7 +25,11 @@ const Main = ({ shoes, setShoes }) => {
             <div className='container'>
                 <div className='row'>
                     {shoes.map((shoe, index) => {
-                        return <Product shoe={shoe} key={index} />;
+                        return (
+                            <>
+                                <Product shoe={shoe} key={index} />
+                            </>
+                        );
                     })}
                 </div>
                 <button
