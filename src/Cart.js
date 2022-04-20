@@ -1,8 +1,11 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-const Cart = (props) => {
+const Cart = () => {
+    const state = useSelector((state) => state);
+    let dispatch = useDispatch();
+
     return (
         <div>
             <Table responsive>
@@ -12,23 +15,29 @@ const Cart = (props) => {
                     <th>수량</th>
                     <th>변경</th>
                 </tr>
-                {props.state.map((st, i) => {
+                {state.map((st, index) => {
                     return (
-                        <tr key={i}>
+                        <tr key={index}>
                             <td>{st.id}</td>
                             <td>{st.name}</td>
                             <td>{st.quan}</td>
                             <td>
                                 <button
                                     onClick={() => {
-                                        props.dispatch({ type: 'plus' });
+                                        dispatch({
+                                            type: 'plus',
+                                            payload: index,
+                                        });
                                     }}
                                 >
                                     +
                                 </button>
                                 <button
                                     onClick={() => {
-                                        props.dispatch({ type: 'minus' });
+                                        dispatch({
+                                            type: 'minus',
+                                            payload: index,
+                                        });
                                     }}
                                 >
                                     -
@@ -46,10 +55,4 @@ const Cart = (props) => {
     );
 };
 
-const redux = (state) => {
-    return {
-        state: state,
-    };
-};
-
-export default connect(redux)(Cart);
+export default Cart;

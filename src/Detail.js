@@ -6,6 +6,7 @@ import './Detail.scss';
 import { Nav } from 'react-bootstrap';
 import Tabcontent from './Tabcontent';
 import { CSSTransition } from 'react-transition-group';
+import { connect } from 'react-redux';
 
 let Main = styled.div`
     padding: 20px;
@@ -19,7 +20,7 @@ let Title = styled.h4`
     color: ${(props) => props.color};
 `;
 
-const Detail = ({ shoes, stock }) => {
+const Detail = (props) => {
     const [alert, setAlert] = useState(true);
     const [tab, setTab] = useState(0);
     const [swit, setSwit] = useState(false);
@@ -35,8 +36,6 @@ const Detail = ({ shoes, stock }) => {
 
     const { id } = useParams();
     const navigate = useNavigate();
-    console.log(id);
-    console.log(shoes);
 
     return (
         <>
@@ -55,16 +54,33 @@ const Detail = ({ shoes, stock }) => {
                     <div className='row'>
                         <div className='col-md-6'>
                             <img
-                                src={`https://codingapple1.github.io/shop/shoes1.jpg`}
+                                src={`https://codingapple1.github.io/shop/shoes${
+                                    props.shoes[id]?.id + 1
+                                }.jpg`}
                                 width='100%'
                             />
                         </div>
                         <div className='shoes_info'>
-                            <h4 className='pt-5'>{shoes[id]?.title}</h4>
-                            <p>{shoes[id]?.content}</p>
-                            <p>{shoes[id]?.price}</p>
-                            <p>재고 : {stock[0]}</p>
-                            <button className='btn btn-danger'>주문하기</button>
+                            <h4 className='pt-5'>{props.shoes[id]?.title}</h4>
+                            <p>{props.shoes[id]?.content}</p>
+                            <p>{props.shoes[id]?.price}</p>
+                            <p>재고 : {props.stock[0]}</p>
+                            <button
+                                className='btn btn-danger'
+                                onClick={() => {
+                                    props.dispatch({
+                                        type: 'addOption',
+                                        payload: {
+                                            id: props.shoes[id]?.id,
+                                            name: props.shoes[id]?.content,
+                                            quan: 1,
+                                        },
+                                    });
+                                    navigate('/cart');
+                                }}
+                            >
+                                주문하기
+                            </button>
                             <button
                                 onClick={() => {
                                     navigate(`/`);
@@ -113,4 +129,10 @@ const Detail = ({ shoes, stock }) => {
     );
 };
 
-export default Detail;
+const redux = (state) => {
+    return {
+        state: state,
+    };
+};
+
+export default connect(redux)(Detail);
