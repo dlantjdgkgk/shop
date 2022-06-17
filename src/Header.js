@@ -12,6 +12,9 @@ const Header = () => {
                         <Nav.Link>
                             <Link to='/'>Home</Link>
                         </Nav.Link>
+                        <Nav.Link>
+                            <Link to='/latest'>Latest Product</Link>
+                        </Nav.Link>
                         <NavDropdown title='Dropdown' id='basic-nav-dropdown'>
                             <NavDropdown.Item href='#action/3.1'>
                                 Action

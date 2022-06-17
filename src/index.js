@@ -11,11 +11,18 @@ const defaultValue = [
 ];
 
 const reducer = (state = defaultValue, action) => {
-    if (action.type === 'addOption') {
-        const copy = [...state];
-        copy.push(action.payload);
-        console.log(copy);
-        return copy;
+    const index = state.findIndex((st) => st?.id === action.payload?.id);
+
+    if (action.type === 'addProduct') {
+        if (index >= 0) {
+            const copy = [...state];
+            copy[index].quan++;
+            return copy;
+        } else {
+            const copy = [...state];
+            copy.push(action.payload);
+            return copy;
+        }
     } else if (action.type === 'plus') {
         const copy = [...state];
         copy[action.payload].quan++;

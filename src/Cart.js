@@ -3,7 +3,7 @@ import { Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Cart = () => {
-    const state = useSelector((state) => state);
+    const states = useSelector((state) => state);
     let dispatch = useDispatch();
 
     return (
@@ -15,18 +15,18 @@ const Cart = () => {
                     <th>수량</th>
                     <th>변경</th>
                 </tr>
-                {state.map((st, index) => {
+                {states.map((state, index) => {
                     return (
                         <tr key={index}>
-                            <td>{st.id}</td>
-                            <td>{st.name}</td>
-                            <td>{st.quan}</td>
+                            <td>{state.id}</td>
+                            <td>{state.name}</td>
+                            <td>{state.quan}</td>
                             <td>
                                 <button
                                     onClick={() => {
                                         dispatch({
                                             type: 'plus',
-                                            payload: index,
+                                            payload: state.id,
                                         });
                                     }}
                                 >
@@ -36,7 +36,7 @@ const Cart = () => {
                                     onClick={() => {
                                         dispatch({
                                             type: 'minus',
-                                            payload: index,
+                                            payload: state.id,
                                         });
                                     }}
                                 >

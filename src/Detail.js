@@ -26,6 +26,19 @@ const Detail = (props) => {
     const [swit, setSwit] = useState(false);
 
     useEffect(() => {
+        let arr = localStorage.getItem('watched');
+        if (arr == null) {
+            arr = [];
+        } else {
+            arr = JSON.parse(arr);
+        }
+        arr.push(id);
+        arr = new Set(arr);
+        arr = [...arr];
+        localStorage.setItem('watched', JSON.stringify(arr));
+    }, []);
+
+    useEffect(() => {
         const timer = setTimeout(() => {
             setAlert(false);
         }, 2000);
@@ -69,10 +82,10 @@ const Detail = (props) => {
                                 className='btn btn-danger'
                                 onClick={() => {
                                     props.dispatch({
-                                        type: 'addOption',
+                                        type: 'addProduct',
                                         payload: {
                                             id: props.shoes[id]?.id,
-                                            name: props.shoes[id]?.content,
+                                            name: props.shoes[id]?.title,
                                             quan: 1,
                                         },
                                     });
