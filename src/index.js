@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import store from './store.js';
 
 const defaultValue = [
     { id: 0, name: '멋진신발', quan: 2 },
@@ -36,13 +36,9 @@ const reducer = (state = defaultValue, action) => {
     }
 };
 
-const store = createStore(reducer);
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <React.StrictMode>
-        <Provider store={store}>
-            <App />
-        </Provider>
-    </React.StrictMode>
+    <Provider store={store}>
+        <App />
+    </Provider>
 );
